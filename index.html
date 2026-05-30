@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThmdPlayer - Lekki odtwarzacz wideo dla Linux</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="logo.png" type="image/png">
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a href="#" class="brand">
+        <img src="logo.png" alt="ThmdPlayer logo">
+        <span>ThmdPlayer</span>
+      </a>
+      <div class="nav-links">
+        <a href="#funkcje">Funkcje</a>
+        <a href="#instalacja">Instalacja</a>
+        <a href="#changelog">Changelog</a>
+        <a href="https://github.com/softbery/ThmdPlayer">GitHub</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <img src="logo.png" alt="ThmdPlayer logo">
+        <h1>ThmdPlayer</h1>
+        <p>Lekki, szybki odtwarzacz wideo dla Linux. Zbudowany w C# / .NET 8, AvaloniaUI i LibVLC.</p>
+        <div class="buttons">
+          <a class="btn btn-primary" href="https://github.com/softbery/ThmdPlayer/releases">Pobierz</a>
+          <a class="btn btn-secondary" href="https://github.com/softbery/ThmdPlayer">Zobacz na GitHub</a>
+        </div>
+        <div>
+          <span class="badge">Linux</span>
+          <span class="badge">.NET 8</span>
+          <span class="badge">AvaloniaUI</span>
+          <span class="badge">LibVLC</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="funkcje">
+      <div class="container">
+        <h2>Funkcje</h2>
+        <div class="features">
+          <div class="feature">
+            <h3>Odtwarzanie wideo</h3>
+            <p>Obsluga popularnych formatow: MP4, MKV, AVI, MOV, WMV, FLV, WebM dzieki silnikowi LibVLC.</p>
+          </div>
+          <div class="feature">
+            <h3>Playlista & kolejka</h3>
+            <p>Zapis i przywracanie listy odtwarzania. Kolejka odtwarzania, drag & drop, wyszukiwanie i sortowanie.</p>
+          </div>
+          <div class="feature">
+            <h3>Pomijanie intra / outra</h3>
+            <p>Reczne ustawienia oraz auto-detekcja przez ffmpeg (blackdetect, silencedetect, scenedetect).</p>
+          </div>
+          <div class="feature">
+            <h3>Skroty klawiszowe</h3>
+            <p>Spacja (play/pause), strzalki (nawigacja / glosnosc), F (fullscreen), N / P (nastepny / poprzedni).</p>
+          </div>
+          <div class="feature">
+            <h3>Napisy & synchronizacja</h3>
+            <p>Automatyczne ladowanie .srt, synchronizacja +/- 0.5s, wybor sciezki audio.</p>
+          </div>
+          <div class="feature">
+            <h3>Tryb Mini Player</h3>
+            <p>Zmniejsz okno do 400x280, zawsze na wierzchu, tryb pelnoekranowy.</p>
+          </div>
+          <div class="feature">
+            <h3>Pasek sterowania</h3>
+            <p>Oddzielne okno kontrolne z suwakiem postepu, czasem, glosnoscia i predkoscia odtwarzania.</p>
+          </div>
+          <div class="feature">
+            <h3>Wznawianie pozycji</h3>
+            <p>Kazdy plik zapamietuje miejsce zatrzymania i wznawia odtwarzanie od tego momentu.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="instalacja">
+      <div class="container">
+        <h2>Instalacja</h2>
+        <div class="install">
+          <h3>Wymagania</h3>
+          <ul class="req-list">
+            <li>.NET 8.0 SDK</li>
+            <li>Linux (Ubuntu, Debian, Fedora, Arch...)</li>
+            <li>VLC Media Player z bibliotekami <code>libvlc-dev</code></li>
+          </ul>
+          <h3>Szybki start (Ubuntu / Debian)</h3>
+          <pre><code>sudo apt-get update
+sudo apt-get install -y vlc libvlc-dev
+wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+sudo apt-get update
+sudo apt-get install -y dotnet-sdk-8.0</code></pre>
+          <h3 class="mt-20">Budowanie ze zrodel</h3>
+          <pre><code>git clone https://github.com/softbery/ThmdPlayer.git
+cd ThmdPlayer
+dotnet restore
+dotnet build ThmdPlayer.csproj
+dotnet run --project ThmdPlayer.csproj</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="changelog">
+      <div class="container">
+        <h2>Ostatnie zmiany</h2>
+
+        <div class="changelog-entry">
+          <h3>v3.05.1215 - 2026-05-30</h3>
+          <ul>
+            <li>Pomijanie intra i outra (per plik + auto-detekcja ffmpeg)</li>
+            <li>Skroty klawiszowe: Spacja, strzalki, F, N, P, M</li>
+            <li>Tryb pelnoekranowy, zawsze na wierzchu, Mini Player</li>
+            <li>Drag & drop, kolejka odtwarzania, wyszukiwanie w playliscie</li>
+            <li>Predkosc odtwarzania, wznawianie pozycji, napisy .srt</li>
+          </ul>
+        </div>
+
+        <div class="changelog-entry">
+          <h3>v3.05.1147 - 2026-05-29</h3>
+          <ul>
+            <li>Skrypt <code>build.sh</code> do automatycznej kompilacji</li>
+            <li>Instalator <code>.run</code> z bibliotekami VLC</li>
+          </ul>
+        </div>
+
+        <p class="center mt-12">
+          <a href="CHANGES.md">Pelny changelog &rarr;</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>ThmdPlayer by <a href="https://github.com/softbery">Softbery</a> / Paweł Tobis.</p>
+      <p class="footer-sub">
+        <a href="LICENSE">Licencja</a> &bull; <a href="README.md">README</a> &bull; <a href="https://github.com/softbery/ThmdPlayer">Repozytorium</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

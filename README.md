@@ -1,37 +1,140 @@
-## Welcome to GitHub Pages
+# ThmdPlayer - Aplikacja do Oglądania Filmów na Linux
 
-You can use the [editor on GitHub](https://github.com/softbery-org/softbery-org.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+ThmdPlayer to lekka aplikacja desktopowa do odtwarzania wideo na Linux, stworzona w C# przy użyciu .NET 8, AvaloniaUI i LibVLC.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Funkcje
 
-### Markdown
+- **Odtwarzanie wideo**: Obsługa popularnych formatów wideo (MP4, MKV, AVI, MOV, WMV, FLV, WebM)
+- **Playlista**: zapisuje i przywraca listę odtwarzania między uruchomieniami
+- **Okno playlisty**: zapamiętuje rozmiar i pozycję okna playlisty
+- **Okno kontrolne**: zapamiętuje rozmiar i pozycję paska sterowania
+- **Kontrolki odtwarzania**: Play/Pause, Stop, poprzedni/następny
+- **Pasek postępu**: podgląd i nawigacja w czasie odtwarzania
+- **Regulacja głośności**: suwak głośności z natychmiastową aktualizacją
+- **Obsługa napisów**: możliwość wczytywania plików z napisami
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Wymagania
 
-```markdown
-Syntax highlighted code block
+- .NET 8.0 SDK
+- Linux (Ubuntu, Debian, Fedora, Arch itp.)
+- VLC Media Player z bibliotekami natywnymi LibVLC
 
-# Header 1
-## Header 2
-### Header 3
+## Instalacja VLC na Linux
 
-- Bulleted
-- List
+### Ubuntu/Debian
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```bash
+sudo apt-get update
+sudo apt-get install -y vlc libvlc-dev
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+### Fedora
 
-### Jekyll Themes
+```bash
+sudo dnf install vlc libvlc-devel
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/softbery-org/softbery-org.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### Arch Linux
 
-### Support or Contact
+```bash
+sudo pacman -S vlc
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## Instalacja .NET 8.0 na Linux
+
+### Ubuntu/Debian
+
+```bash
+wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+sudo apt-get update
+sudo apt-get install -y dotnet-sdk-8.0
+```
+
+### Fedora
+
+```bash
+sudo dnf install dotnet-sdk-8.0
+```
+
+## Budowanie i Uruchamianie
+
+### Krok 1: Przywracanie zależności
+
+```bash
+dotnet restore
+```
+
+### Krok 2: Budowanie projektu
+
+```bash
+dotnet build ThmdPlayer.csproj
+```
+
+### Krok 3: Uruchomienie aplikacji
+
+```bash
+dotnet run --project ThmdPlayer.csproj
+```
+
+## Użycie
+
+1. **Otwórz plik wideo**: Kliknij przycisk "📁 Otwórz" i wybierz plik wideo
+2. **Odtwarzanie/Pauza**: Użyj przycisku Play/Pause do sterowania odtwarzaniem
+3. **Stop**: Kliknij przycisk "⏹ Stop" aby zatrzymać odtwarzanie
+4. **Pasek postępu**: Przeciągnij suwak aby przejść do konkretnej części wideo
+5. **Głośność**: Użyj suwaka, aby regulować poziom dźwięku
+6. **Playlista**: Otwórz playlistę i dodaj pliki; aplikacja zapisze pozycję i rozmiar okna
+
+## Struktura Projektu
+
+```
+ThmdPlayer/
+├── Program.cs              # Punkt startowy aplikacji
+├── App.axaml               # Definicja aplikacji XAML
+├── App.axaml.cs            # Code-behind aplikacji
+├── MainWindow.axaml        # Interfejs głównego okna
+├── MainWindow.axaml.cs     # Logika głównego okna
+├── ViewModels/
+│   └── MainWindowViewModel.cs  # ViewModel dla MVVM
+├── ThmdPlayer.csproj       # Plik projektu
+└── README.md               # Dokumentacja
+```
+
+## Technologie
+
+- **.NET 8.0**: Framework aplikacji
+- **AvaloniaUI 11.0**: Cross-platform UI framework
+- **LibVLCSharp**: Biblioteka do odtwarzania wideo
+- **MVVM Pattern**: Czysta architektura UI
+
+## Rozwiązywanie Problemów
+
+### Nie można znaleźć biblioteki LibVLC
+Upewnij się, że biblioteka LibVLC jest zainstalowana i że `dotnet restore` przebiegł pomyślnie.
+
+```bash
+dotnet restore
+```
+
+### Błąd: Brak dźwięku
+Sprawdź ustawienia dźwięku systemowego i ustawienia głośności w aplikacji.
+
+### Błąd: Format wideo nie jest obsługiwany
+LibVLC obsługuje większość popularnych formatów. Jeśli format nie działa, spróbuj przekonwertować plik na MP4.
+
+### Kompilacja do pojedynczego pliku wykonywalnego
+
+```bash
+dotnet publish -c Release -r linux-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish_path
+```
+
+## Licencja
+
+Projekt jest dostępny do użytku edukacyjnego i osobistego.
+
+## Autor
+
+Softbery by Paweł Tobis
+
+Aplikacja stworzona w C#, AvaloniaUI i LibVLC na platformie Linux.
